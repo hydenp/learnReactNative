@@ -9,7 +9,7 @@ export default function App() {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.headerTitle}>What's Sko'n on?</Text>
+          <Text style={styles.headerTitle}>What's Sko'n on</Text>
         </View>
       </View>
     );
@@ -29,6 +29,7 @@ export default function App() {
       {/* make a view for the foot */}
       <View style={styles.footer}>
         <Text> Can we make a footer!</Text>
+
         <View style={{flexDirection: 'row'}}>
           <Image style={styles.footerImg} source={require('./assets/court.png')} />
           <Image style={styles.footerImg} source={require('./assets/profile.png')} />
@@ -42,7 +43,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     // justifyContent: 'flex-start',
@@ -59,12 +60,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   footer: {
-    
+    position: 'absolute',
+    bottom: 0,
     width: '100%',
     height: 80,
     backgroundColor: '#B2B2B2',
     alignItems: 'center',
-    justifyContent: 'flex-end'
+    // justifyContent: 'flex-end'
   },
   footerImg: {
     marginHorizontal: 60,
