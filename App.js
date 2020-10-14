@@ -1,22 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import {Text, View, Image, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
+import { Card } from 'react-native-paper';
+
+
+// import the external styles sheet
+import styles from "./assets/styles"
+// import the event function from events
+import Event from './assets/events.js'
+
+const DATA = [
+  {
+    id: 'example1',
+    sport: 'Basketball',
+    location: 'Farrand Field',
+    time: '10/20 at 4:30pm'
+
+  },
+  {
+    id: 'example2',
+    sport: 'Football',
+    location: 'Boulder High School',
+    time: '10/24 at 3:30pm'
+  },
+  {
+    id: 'example3',
+    sport: 'Soccer',
+    location: 'Will Vill fields',
+    time: '11/5 at 4:00pm'
+  },
+];
+
 
 export default function App() {
-
-   // create the header
-   function header() {
-    return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.headerTitle}>What's Sko'n on</Text>
-        </View>
-      </View>
-    );
-  }
-
   return (
-
 
     <View style={styles.container}>
       {/* make a new view for the header of our app*/}
@@ -24,54 +41,29 @@ export default function App() {
         <Text style={styles.headerTitle}>What's Sko'n on?</Text>
       </View>
 
-      <Text>How does this fucking... does it still?</Text>
+      {/* list of all events stored in the data array */}
+      <FlatList style={styles.list}
+        data={DATA}
+        renderItem={({item}) => Event(item)}
+        />
+
+
+      {/* Add event button */}
+      <View style={styles.evenButton}>
+        <TouchableOpacity>
+          <Image source={require('./assets/images/create_event_button.png')} />
+        </TouchableOpacity>
+      </View>
 
       {/* make a view for the foot */}
       <View style={styles.footer}>
-        <Text> Can we make a footer!</Text>
 
         <View style={{flexDirection: 'row'}}>
-          <Image style={styles.footerImg} source={require('./assets/court.png')} />
-          <Image style={styles.footerImg} source={require('./assets/profile.png')} />
+          <Image style={styles.footerImg} source={require('./assets/images/navbar_court_button.png')} />
+          <Image style={styles.footerImg} source={require('./assets/images/navbar_profile_button.png')} />
         </View>
       </View>
       {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    // justifyContent: 'flex-start',
-  },
-  header: {
-    width: '100%',
-    height: 80,
-    backgroundColor: '#B2B2B2',
-    alignItems: 'center',
-    justifyContent: 'flex-end'
-  },
-  headerTitle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: 80,
-    backgroundColor: '#B2B2B2',
-    alignItems: 'center',
-    // justifyContent: 'flex-end'
-  },
-  footerImg: {
-    marginHorizontal: 60,
-    marginBottom: 10,
-    height: 50,
-    width: 70,
-  }
-});
